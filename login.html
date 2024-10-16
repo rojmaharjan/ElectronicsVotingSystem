@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronics Voting System Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="shortcut icon" href="./Asset/logo.png" type="image/x-icon">
+    
+</head >
+<style>
+ 
+  button {
+  background-color: #0050ec;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 15px 20px;
+  border-radius: 2em;
+  cursor: pointer;
+  transition: 0.1s ease;
+  border-width: 0;
+  box-shadow: 1px 5px 0 0 #0e285d;
+  
+}
+
+button:hover {
+  transform: translateY(-4px);
+  box-shadow: 1px 9px 0 0 #0e285d;
+}
+
+button:active {
+  transform: translateY(4px);
+  box-shadow: 0px 0px 0 0 #0e285d;
+}
+.bodysection{
+ max-width: 400px;
+ margin: 0 auto;
+padding: 20px;
+ background-color: #32f1ff;
+ border-radius: 5px;
+ box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+text-align: center;
+--input-focus: #2d8cf0;
+  --font-color: #323232;
+  --font-color-sub: #666;
+  --bg-color: #fff;
+  --main-color: #323232;
+  padding: 20px;
+  background: lightgrey;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+  border-radius: 5px;
+  border: 2px solid var(--main-color);
+  box-shadow: 4px 4px var(--main-color);
+
+
+}
+
+
+
+
+
+body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #797777;
+        }
+
+        input[type="number"],
+        input[type="password"],
+        select {
+            width: 50%;
+            padding: 10px;
+            border: 1px solid #136abb;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+        .dropbox{
+    padding: 10px;
+    width: 50%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+    
+        .backbtn {
+    background-color: #0050ec;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 2em;
+    border-width: 0;
+    box-shadow: 1px 5px 0 0 #0e285d;
+    cursor: pointer;
+    transition: 0.1s ease;
+    float: left;
+
+  }
+
+  .backbtn:hover {
+    transform: translateY(-4px);
+    box-shadow: 1px 9px 0 0 #0e285d;
+  }
+
+  .backbtn:active {
+    transform: translateY(4px);
+    box-shadow: 0px 0px 0 0 #0e285d;
+  }
+
+  .popup-box {
+    position: absolute;
+    display: none;
+    padding: 30px;
+    background-color: #c2bfbf;
+    border: 1px solid #000000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-size: 18px;
+    top: 50px; /* Adjust this value as needed to position the popup below the header */
+    left: 30%; /* Center the popup horizontally */
+    transform: translateX(0%); /* Center the popup horizontally */
+    width: 150px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.popup-loading-icon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 4px solid #000000;
+    border-top: 4px solid #00ff0d;
+    border-radius: 50%;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+
+ 
+
+</style>
+
+<body>
+  <div class="Headersection">
+      <a href="index.html"><button class="backbtn" type="button"><i class="fas fa-arrow-left"></i> Back</button></a>
+    <h1>🗳️Electronics Voting System🗳️</h1>
+  </div>
+  <hr>
+
+  <div class="bodysection">
+      <form action="/Php/login.php" method="post">
+          <h2>User Login</h2>
+          <label>Mobile Number:</label>
+          <input type="number" name="Mobile" placeholder="Enter Mobile Number"  required><br><br>
+          <label>Your Password:</label>
+          <input type="password" name="password" placeholder="Enter password"   required><br><br>
+          <label>Select Role:</label>
+          <select class="dropbox" name="role">
+              <option value="1">Voter</option>
+              <option value="2">Candidate</option>
+          </select><br><br>
+          <center> <button id="loginButton" class="loginbutton" type="submit">Login</button><br><br></center>
+          New user👉<a href="register.html">Register here</a>
+      </form>
+  </div>
+  <br><br><br><br><br><br><br><br><br><br>
+  <div>
+      <h4 class="footer">© 2023 E-Voting. All Rights Reserved</h4>
+  </div>
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("loginButton").addEventListener("click", function(event) {
+            event.preventDefault();
+
+            // AJAX login submission
+            var formData = new FormData(document.querySelector('form'));
+            showPopup("Loading..."); // Show loading icon while waiting for the server response
+            fetch('./Php/login.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                if (data.trim() === 'success') {
+                    showPopup("Login Successful");
+                    setTimeout(function() {
+                        window.location = "./Php/dashboard.php";
+                    }, 4000);
+                } else if (data.trim() === 'error') {
+                    showPopup("User not Found", true); // Show error icon
+                    setTimeout(function() {
+                      window.location = "login.html";
+                    }, 400);
+                } else {
+                    showPopup("An error occurred");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                showPopup("An error occurred");
+            });
+        });
+
+        function showPopup(message, isError = false) {
+            var popup = document.createElement("div");
+            popup.className = "popup-box";
+            
+            // Check if it's an error message to show the appropriate icon
+            var icon = isError ? '<i class="fas fa-exclamation-circle"></i>' : '<div class="popup-loading-icon"></div>';
+            
+            popup.innerHTML = icon + '<div class="popup-message">' + message + '</div>';
+            document.body.appendChild(popup);
+
+            var centerPopup = function() {
+                var windowWidth = window.innerWidth || document.documentElement.clientWidth;
+                var windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                var popupWidth = popup.offsetWidth;
+                var popupHeight = popup.offsetHeight;
+
+                popup.style.left = (windowWidth - popupWidth) / 2 + "px";
+                popup.style.top = (windowHeight - popupHeight) / 2 + "px";
+            };
+
+            centerPopup();
+            window.addEventListener("resize", centerPopup);
+
+            popup.style.display = "block";
+        }
+
+        function closePopup() {
+            var popup = document.querySelector(".popup-box");
+            if (popup) {
+                popup.remove();
+            }
+        }
+    });
+</script>
+
+
+  
+</body>
+
+</html>

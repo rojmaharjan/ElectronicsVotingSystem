@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./Asset/logo.png" type="image/x-icon">
+    <title>Contact Support Chat</title>
+    <style>
+        /* Styles for the chat container */
+        .chat-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #f2f2f2;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Styles for the chat messages */
+        .chat-message {
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px;
+            max-width: 70%;
+        }
+
+        .system-message {
+            background-color: #e5e5ea;
+            color: #333;
+            float: left;
+        }
+
+        .user-message {
+            background-color: #007bff;
+            color: white;
+            float: right;
+        }
+
+        /* Styles for the input and button */
+        .input-container {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+        }
+
+        .send-button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Clearfix for floats */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        /* Styles for the form */
+        
+        .hidden {
+            display: none;
+        }
+        .backbtn {
+    background-color: #0050ec;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 2em;
+    border-width: 0;
+    box-shadow: 1px 5px 0 0 #0e285d;
+    cursor: pointer;
+    transition: 0.1s ease;
+    float: left;
+
+  }
+
+  .backbtn:hover {
+    transform: translateY(-4px);
+    box-shadow: 1px 9px 0 0 #0e285d;
+  }
+
+  .backbtn:active {
+    transform: translateY(4px);
+    box-shadow: 0px 0px 0 0 #0e285d;
+  }
+      
+  .Headersection{
+padding: 5px;
+font-family: cursive;
+text-align: center;
+}
+
+.footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #797777;
+        }
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="Headersection" >
+        <a href="index.html"><button class="backbtn" type="button"><i class="fas fa-arrow-left"></i> Back</button></a>
+  
+         <h1>🗳️Electronics Voting System🗳️</h1>
+         
+          
+          
+  
+      </div><hr>
+      <h2 class="Headersection">Contact Support Chat</h2>
+    <div class="chat-container">
+        <div id="chat-log"></div>
+        <div class="clearfix"></div>
+        <div id="form-container" class="hidden">
+            <h3>Provide Additional Information</h3>
+            <form id="user-form" onsubmit="submitForm(); return false;">
+                <label for="name">Full Name:</label><br>
+                <input type="text"  id="name" name="fname" required><br>
+                <label for="email" >Email:</label><br>
+                <input type="email" id="email" name="email" required><br>
+                <label for="message">Message:</label><br>
+                <textarea id="message" rows="4" name="mesg" required></textarea>
+                <button type="submit" class="send-button">Submit</button>
+            </form>
+        </div>
+        <div class="input-container">
+            <input type="text" id="chat-input" class="chat-input" placeholder="Type your message...">
+            <button id="send-button" class="send-button" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // Counter for user messages
+        let userMessageCount = 0;
+
+        function sendMessage() {
+            // Get user input
+            const userInput = document.getElementById('chat-input').value.trim();
+            
+            if (userInput === "") {
+                return;
+            }
+
+            // Create a new chat bubble for the user's message
+            const userBubble = document.createElement('div');
+            userBubble.className = 'chat-message user-message';
+            userBubble.textContent = 'You: ' + userInput;
+
+            // Add the user's message to the chat log
+            const chatLog = document.getElementById('chat-log');
+            chatLog.appendChild(userBubble);
+
+            // Increment the user message count
+            userMessageCount++;
+
+            // Call a function to get the AI's response
+            const aiResponse = getAiResponse(userInput);
+
+            // Create a new chat bubble for AI response
+            const aiBubble = document.createElement('div');
+            aiBubble.className = 'chat-message system-message';
+            aiBubble.textContent = 'Team: ' + aiResponse;
+
+            // Add the AI's response to the chat log
+            chatLog.appendChild(aiBubble);
+
+            // If the user has sent two messages, show the form
+            if (userMessageCount >= 2) {
+                document.getElementById('form-container').classList.remove('hidden');
+            }
+
+            // Clear the user input field
+            document.getElementById('chat-input').value = '';
+        }
+
+        function getAiResponse(userInput) {
+            // Here you can implement the AI logic to generate a response based on the user's input
+            // For this basic example, we'll return a predefined response
+            return "Thank you for your message. Our support team will get back to you soon.";
+        }
+
+        function submitForm() {
+            // Get the user's form input
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            // You can now handle the form data as needed, e.g., submit it to a server
+            // For this basic example, we'll just display a thank you message
+            const formContainer = document.getElementById('form-container');
+            formContainer.innerHTML = "<p>Thank you for submitting the form. Our support team will review your message.</p>";
+        }
+    </script>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<div>
+    <h4 class="footer">© 2023 E-Voting. All Rights Reserved</h4>
+</div>
+</body>
+</html>

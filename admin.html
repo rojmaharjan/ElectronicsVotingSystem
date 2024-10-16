@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronics Voting System Admin Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <link rel="shortcut icon" href="./Asset/logo.png" type="image/x-icon">
+</head>
+<style>
+   
+   .backbtn {
+    background-color: #0050ec;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 2em;
+    border-width: 0;
+    box-shadow: 1px 5px 0 0 #0e285d;
+    cursor: pointer;
+    transition: 0.1s ease;
+    float: left;
+
+  }
+
+  .backbtn:hover {
+    transform: translateY(-4px);
+    box-shadow: 1px 9px 0 0 #0e285d;
+  }
+
+  .backbtn:active {
+    transform: translateY(4px);
+    box-shadow: 0px 0px 0 0 #0e285d;
+  }
+
+    .loginbutton:hover {
+        transform: scale(1.06);
+    }
+
+    button {
+        background-color: #0050ec;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 15px 20px;
+        border-radius: 2em;
+        cursor: pointer;
+        transition: 0.1s ease;
+        border-width: 0;
+        box-shadow: 1px 5px 0 0 #0e285d;
+    }
+
+    button:hover {
+        transform: translateY(-4px);
+        box-shadow: 1px 9px 0 0 #0e285d;
+    }
+
+    button:active {
+        transform: translateY(4px);
+        box-shadow: 0px 0px 0 0 #0e285d;
+    }
+
+    .bodysection {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #32f1ff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        --input-focus: #2d8cf0;
+        --font-color: #323232;
+        --font-color-sub: #666;
+        --bg-color: #fff;
+        --main-color: #323232;
+        padding: 20px;
+        background: lightgrey;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 20px;
+        border-radius: 5px;
+        border: 2px solid var(--main-color);
+        box-shadow: 4px 4px var(--main-color);
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f1f1f1;
+    }
+
+    .footer {
+        text-align: center;
+        margin-top: 20px;
+        color: #797777;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    select {
+        width: 50%;
+        padding: 10px;
+        border: 1px solid #136abb;
+        border-radius: 3px;
+        font-size: 16px;
+    }
+
+    .dropbox{
+        padding: 10px;
+        width: 50%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        font-size: 16px;
+    }
+</style>
+
+<body>
+    <div  class="Headersection">
+        <a href="index.html"><button class="backbtn" type="button" ><i class="fas fa-arrow-left"></i> Back</button></a>
+        <h1>🗳️ Electronics Voting System Admin Login 🗳️</h1>
+    </div>
+    <hr>
+
+    <div class="bodysection">
+        <form action="./Admin/admin_login.php" method="post">
+        <center><h2>Admin Login</h2></center>
+            <label>Username:</label>
+            <input type="text" name="username" placeholder="Enter username"  required><br><br>
+            <label>Password:</label>
+            <input type="password" name="password" placeholder="Enter password"   required><br><br>
+            <label>Select Role:</label>
+            <select class="dropbox" name="role">
+                <option value="3">Admin</option>
+                
+            </select><br><br>
+            <center>
+                <button class="loginbutton" type="submit">Login</button><br><br>
+            </center>
+            Voter 👉<a href="login.html">Login here</a>
+        </form>
+    </div>
+
+    <br><br><br><br><br><br><br><br><br><br>
+    <div>
+        <h4 class="footer">© 2023 E-Voting. All Rights Reserved</h4>
+    </div>
+</body>
+</html>
